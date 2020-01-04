@@ -30,6 +30,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    {src: '@/plugins/socket.js', ssr: false} // server side rendering = false. We need this only on frontend
   ],
   /*
   ** Nuxt.js dev-modules

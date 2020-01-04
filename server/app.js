@@ -4,6 +4,18 @@ const io = require('socket.io')(server) // Sockets configurated. Now we can use 
 
 io.on('connection', (socket) => {
     console.log('IO connected');
+
+    socket.on('createMessage', data => {
+        setTimeout(() => {
+            socket.emit('newMessageStore', {
+                text: data.text + ' SERVER'
+            })
+        }, 500)
+    })
+
+    socket.emit('newMessageStore', {
+        text: 'WHAT'
+    })
 })
 
 module.exports = {

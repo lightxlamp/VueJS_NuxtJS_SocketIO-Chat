@@ -1,9 +1,17 @@
 <template>
- <v-app app>
-   <h1>My title</h1>
- </v-app>
+  <v-app app>
+    <nuxt/>
+  </v-app>
 </template>
 
 <script>
-
+  export default {};
 </script>
+
+
+
+ 
+ 
+
+
+
