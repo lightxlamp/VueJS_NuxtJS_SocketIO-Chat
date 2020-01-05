@@ -1,6 +1,6 @@
 <template>
   <v-app app>
-    <v-navigation-drawer app v-model="drawer">
+    <v-navigation-drawer app v-model="drawer" mobile-break-point="650px">
       <v-list subheader>
         <v-subheader>Users in room:</v-subheader>
         <v-list-item v-for="user in users" :key="user.id">
@@ -27,7 +27,7 @@
       <v-toolbar-title>"{{ user.room }}" - chat room</v-toolbar-title>
     </v-app-bar>
     <v-content>
-      <div>
+      <div style="height: 100%">
         <nuxt />
       </div>
     </v-content>
@@ -39,17 +39,17 @@ import { mapState, mapMutations } from "vuex";
 export default {
   computed: mapState(["user"]),
   data: () => ({
-    drawer: true, 
+    drawer: true,
     users: [
-      {id: 1, name: 'User 1'}, 
-      {id: 2, name: 'User 2'}, 
+      { id: 1, name: "User 1" },
+      { id: 2, name: "User 2" }
     ]
   }),
   methods: {
-    ...mapMutations(['clearData']),
+    ...mapMutations(["clearData"]),
     exit() {
-       this.$router.push("/?action=leftChat");
-       this.clearData();
+      this.$router.push("/?action=leftChat");
+      this.clearData();
     }
   }
 };

@@ -3,7 +3,7 @@ const server = require("http").createServer(app); // node native
 const io = require("socket.io")(server); // Sockets configurated. Now we can use them
 
 function message(name, text, id) {
-  return ({name, text, id})
+  return { name, text, id };
 }
 
 io.on("connection", socket => {
@@ -14,10 +14,16 @@ io.on("connection", socket => {
       return callback("User name or(and) chat room is missing");
     }
 
-    socket.join(data.room)
+    socket.join(data.room);
     callback({ userID: socket.id });
-    socket.emit('welcomeUserMessage', message('admin', `Welcome ${data.name}`))
-    socket.broadcast.to(data.room).emit('welcomeUserMessage', message('admin', `User ${data.name} entered the room`))
+    socket.emit("welcomeUserMessage", message("admin", `Welcome ${data.name}`));
+    socket.emit("welcomeUserMessage", message("Stas", `;flkjdslk;fjlkjdfglkdsjlk;`));
+    socket.broadcast
+      .to(data.room)
+      .emit(
+        "welcomeUserMessage",
+        message("admin", `User ${data.name} entered the room`)
+      );
   });
 
   socket.on("createMessage", data => {

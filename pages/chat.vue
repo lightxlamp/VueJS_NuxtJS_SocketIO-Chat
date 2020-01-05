@@ -2,28 +2,40 @@
 automatically, when a new file adds (to pages folder probably)
 
 <template>
-  <div>
-    <ul>
-        <li v-for="m in messages" :key="m.text">
-            {{m.text}}
-        </li>
-    </ul>  
-    <!-- <h1>Chat page of "{{ user.name }}" user</h1> -->
-    <!-- <v-btn @click="printMapState" color="success"
+  <div class="chat-wrap">
+    <div class="chat">
+      <ul>
+        <message
+          v-for="m in messages"
+          :key="m.text"
+          :name="m.name"
+          :text="m.text"
+          owner
+        />
+      </ul>
+      <!-- <h1>Chat page of "{{ user.name }}" user</h1> -->
+      <!-- <v-btn @click="printMapState" color="success"
       >Print mapState to console</v-btn
     > -->
+    </div>
+    <div class="chat-form">
+      <messageField />
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import message from "@/components/message";
+import messageField from "@/components/messageField";
 export default {
   computed: mapState(["user", "messages"]),
   middleware: ["chat"],
-  head () {
-      return {
-          title: `Welcome to ${this.user.room} room` // TODO learn more about mapState
-      }
+  components: { message, messageField},
+  head() {
+    return {
+      title: `Welcome to ${this.user.room} room` // TODO learn more about mapState
+    };
   },
   methods: {
     printMapState() {
@@ -32,3 +44,31 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.chat-wrap {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-form {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  height: 80px;
+  background: #212121;
+}
+
+.chat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 80px;
+  padding: 1rem;
+  overflow-y: auto;
+}
+</style>
