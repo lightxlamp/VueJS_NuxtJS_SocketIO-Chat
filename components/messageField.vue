@@ -1,10 +1,10 @@
 <template>
   <v-col cols="12">
     <v-text-field
-      label="Type a message"
+      label="Type a message and press enter"
+      outlined
       v-model="messageText"
       @keydown.enter="send"
-      outlined
     />
   </v-col>
 </template>
@@ -16,6 +16,11 @@ export default {
   }),
   methods: {
     send() {
+      // Debug info
+      console.log(
+        `Sending message = "${this.messageText}". User id = ${this.$store.state.user.id}`
+      );
+
       this.$socket.emit(
         "createMessage",
         {
@@ -23,6 +28,7 @@ export default {
           id: this.$store.state.user.id
         },
         data => {
+          console.log("Callback data" + data);
           if (typeof data === "string") {
             console.error(data);
           } else {

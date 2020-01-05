@@ -16,26 +16,26 @@ io.on("connection", socket => {
 
     socket.join(data.room);
     callback({ userID: socket.id });
-    socket.emit("welcomeUserMessage", message("admin", `Welcome ${data.name}`));
-    socket.emit("welcomeUserMessage", message("Stas", `;flkjdslk;fjlkjdfglkdsjlk;`));
+    socket.emit("newMessage", message("admin", `Welcome ${data.name}`));
+    socket.emit("newMessage", message("Stas", `Test message`));
     socket.broadcast
       .to(data.room)
       .emit(
-        "welcomeUserMessage",
+        "newMessage",
         message("admin", `User ${data.name} entered the room`)
       );
   });
 
   socket.on("createMessage", data => {
     setTimeout(() => {
-      socket.emit("newMessageStore", {
+      socket.emit("newMessage", {
         text: data.text + " SERVER"
       });
     }, 500);
   });
 
   socket.emit("newMessageStore", {
-    text: "WHAT"
+    text: "Test message from server"
   });
 });
 

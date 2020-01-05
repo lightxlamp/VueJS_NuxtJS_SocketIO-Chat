@@ -34,7 +34,7 @@
 
       <!-- <v-btn @click="newMessage"> 
         New message by Stas
-      </v-btn> -->
+      </v-btn>  -->
     </v-flex>
   </v-layout>
 </template>
@@ -94,3 +94,11 @@ export default {
   }
 };
 </script>
+
+<style>
+
+html{
+  overflow-y: auto ;
+}
+
+</style>

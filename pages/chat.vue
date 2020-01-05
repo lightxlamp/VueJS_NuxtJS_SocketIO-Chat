@@ -46,6 +46,10 @@ export default {
 </script>
 
 <style scoped>
+html{
+  overflow-y: auto !important;
+}
+
 .chat-wrap {
   height: 100%;
   position: relative;
@@ -58,7 +62,7 @@ export default {
   left: 0;
   right: 0;
   padding: 1rem;
-  height: 80px;
+  height: 100px;
   background: #212121;
 }
 

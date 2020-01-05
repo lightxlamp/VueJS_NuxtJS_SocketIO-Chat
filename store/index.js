@@ -10,13 +10,13 @@ export const mutations = {
   clearData(state) {
     (state.user = {}), (state.messages = []);
   },
-  SOCKET_welcomeUserMessage(state, message) {
+  SOCKET_newMessage(state, message) {
     state.messages.push(message);
   }
 };
 
 export const actions = {
-    SOCKET_newMessageStore(context, data) {
-        console.log('Message received: ', data);
-    }
-}
+  SOCKET_newMessageStore(context, data) {
+    console.log("Message received by store: ", data);
+  }
+};
