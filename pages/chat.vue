@@ -3,17 +3,22 @@ automatically, when a new file adds (to pages folder probably)
 
 <template>
   <div>
-    <h1>Chat Page {{ user.name }}</h1>
-    <v-btn @click="printMapState" color="success"
+    <ul>
+        <li v-for="m in messages" :key="m.text">
+            {{m.text}}
+        </li>
+    </ul>  
+    <!-- <h1>Chat page of "{{ user.name }}" user</h1> -->
+    <!-- <v-btn @click="printMapState" color="success"
       >Print mapState to console</v-btn
-    >
+    > -->
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 export default {
-  computed: mapState(["user"]),
+  computed: mapState(["user", "messages"]),
   middleware: ["chat"],
   head () {
       return {

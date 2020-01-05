@@ -79,8 +79,16 @@ export default {
           name: this.name,
           room: this.room
         };
-        this.setUser(user);
-        this.$router.push("/chat");
+
+        this.$socket.emit("completeUser", user, data => {
+          if (typeof data === "string") {
+            console.error(data);
+          } else {
+            user.id = data.userID;
+            this.setUser(user);
+            this.$router.push("/chat");
+          }
+        });
       }
     }
   }

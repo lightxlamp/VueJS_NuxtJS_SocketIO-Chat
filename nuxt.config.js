@@ -62,7 +62,14 @@ module.exports = {
           success: colors.green.accent3
         }
       }
-    }
+    },
+    // defaultAssets: {
+    //   font: true,
+    //   icons: 'mdi'
+    // },
+    // icons: {
+    //   iconfont: 'mdi',
+    // }
   },
   /*
   ** Build configuration
