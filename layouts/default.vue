@@ -36,13 +36,16 @@
 
 <script>
 import { mapState, mapMutations } from "vuex";
+const stasTestModule = require("../server/stasTestingExportModule");
 export default {
   computed: mapState(["user"]),
   data: () => ({
     drawer: true,
     users: [
       { id: 1, name: "User 1" },
-      { id: 2, name: "User 2" }
+      { id: 2, name: "User 2" },
+      { id: 3, name: stasTestModule.favoriteAuthor.name } //it was interesing for me.
+      //Can I use exported modules in layouts as well? :p
     ]
   }),
   methods: {

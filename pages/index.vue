@@ -72,7 +72,9 @@ export default {
         text: "From client"
       });
     },
+    
     ...mapMutations(["setUser"]),
+
     submit() {
       if (this.$refs.form.validate()) {
         const user = {
@@ -80,7 +82,7 @@ export default {
           room: this.room
         };
 
-        this.$socket.emit("completeUser", user, data => {
+        this.$socket.emit("userConnecting", user, data => {
           if (typeof data === "string") {
             console.error(data);
           } else {

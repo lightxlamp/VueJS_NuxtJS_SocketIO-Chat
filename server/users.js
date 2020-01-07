@@ -15,7 +15,7 @@ class Users {
         const user = this.get(id)
 
         if(user){
-            this.users = this.users.filter(user => user.id !== id) // TO DO. Rewrite with remove 
+            this.users = this.users.filter(user => user.id !== id)
         }
 
         return user

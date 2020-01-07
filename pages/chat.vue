@@ -3,6 +3,7 @@ automatically, when a new file adds (to pages folder probably)
 
 <template>
   <div class="chat-wrap">
+    <!-- <h1>Chat page of "{{ user.name }}" user. User's id - {{ user.id}} </h1> -->
     <div class="chat">
       <ul>
         <message
@@ -10,7 +11,7 @@ automatically, when a new file adds (to pages folder probably)
           :key="m.text"
           :name="m.name"
           :text="m.text"
-          owner
+          :owner="m.id === user.id"
         />
       </ul>
       <!-- <h1>Chat page of "{{ user.name }}" user</h1> -->
