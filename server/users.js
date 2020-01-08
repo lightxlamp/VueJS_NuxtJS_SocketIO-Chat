@@ -22,7 +22,9 @@ class Users {
     }
 
     getAllUsersInRoom(room){
-        return this.users.filter(user => user.room === room) 
+        const usersInRoom = this.users.filter(user => user.room === room); 
+        console.log('getAllUsersInRoom: ' + JSON.stringify(usersInRoom, null, 4));
+        return usersInRoom
     }
 }
 

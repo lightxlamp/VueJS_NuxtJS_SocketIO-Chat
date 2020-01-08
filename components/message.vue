@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="name === 'admin'" class="systemMessage">
-      <p class="text-xs-center">{{ text }}</p>
+      <p class="adminMessage">{{ text }}</p>
       <hr />
     </div>
 
@@ -63,4 +63,9 @@ export default {
   color: #000;
   align-self: flex-end;
 }
+
+.adminMessage{
+  text-align: center;
+}
+
 </style>

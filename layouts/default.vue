@@ -1,22 +1,20 @@
 <template>
   <v-app app>
     <v-navigation-drawer app v-model="drawer" mobile-break-point="650px">
-      <v-list subheader>
-        <v-subheader>Users in room:</v-subheader>
-        <v-list-item v-for="user in users" :key="user.id">
+      <v-list-item-title subheader>
+        <v-subheader>Users in room:</v-subheader> 
+        <!-- <v-list-item v-for="user in users" :key="user.id">  -->
+        <v-list-item v-for="u in usersInRoom" :key="u.id"> 
           <v-list-item-icon>
-            <v-icon v-if="user.id === 2" color="yellow">mdi-account</v-icon>
+            <!-- id of iterated user = id of a logged in user -->
+            <v-icon v-if="u.id === user.id" color="yellow">mdi-account</v-icon> 
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title v-text="user.name"></v-list-item-title>
+            <v-list-item-title v-text="u.name"></v-list-item-title>
           </v-list-item-content>
-
-          <!-- <v-list-item-avatar>
-            <v-img :src="item.avatar"></v-img>
-          </v-list-item-avatar> -->
         </v-list-item>
-      </v-list>
+      </v-list-item-title>
     </v-navigation-drawer>
 
     <v-app-bar app>
@@ -38,7 +36,7 @@
 import { mapState, mapMutations } from "vuex";
 const stasTestModule = require("../server/stasTestingExportModule");
 export default {
-  computed: mapState(["user"]),
+  computed: mapState(["user", "usersInRoom"]),
   data: () => ({
     drawer: true,
     users: [
@@ -51,8 +49,10 @@ export default {
   methods: {
     ...mapMutations(["clearData"]),
     exit() {
-      this.$router.push("/?action=leftChat");
-      this.clearData();
+      this.$socket.emit("userLeft", this.user.id, () => {
+        this.$router.push("/?action=leftChat");
+        this.clearData();
+      });
     }
   }
 };

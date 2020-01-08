@@ -1,6 +1,7 @@
 export const state = () => ({
   user: {},
-  messages: []
+  messages: [],
+  usersInRoom: []
 });
 
 export const mutations = {
@@ -8,10 +9,14 @@ export const mutations = {
     state.user = user;
   },
   clearData(state) {
-    (state.user = {}), (state.messages = []);
+    (state.user = {}), (state.messages = [], state.usersInRoom = []);
   },
   SOCKET_newMessage(state, message) {
     state.messages.push(message);
+  },
+  SOCKET_updateListOfUsersInRoom(state, usersInRoom) {
+    state.usersInRoom = usersInRoom
+    console.log('Users in room' + state.usersInRoom);
   }
 };
 

@@ -1,5 +1,5 @@
 // we don't need to create a route config in NUXT // route creates
-automatically, when a new file adds (to pages folder probably)
+// automatically, when a new file adds (to pages folder probably)
 
 <template>
   <div class="chat-wrap">
