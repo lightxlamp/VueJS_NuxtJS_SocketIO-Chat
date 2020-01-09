@@ -2,6 +2,13 @@
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8>
       <v-card min-width="500px">
+        <v-snackbar v-model="snackbar" :color="color" :timeout="timeout" top>
+          {{ popupMessageText }}
+          <v-btn dark text @click="snackbar = false">
+            Close
+          </v-btn>
+        </v-snackbar>
+
         <v-card-title>Nuxt Chat</v-card-title>
         <v-card-text>
           <v-form ref="form" v-model="valid" :lazy-validation="lazy">
@@ -41,6 +48,7 @@
 
 <script>
 import { mapMutations } from "vuex";
+import { red } from "color-name";
 export default {
   layout: "start_layout",
   head: {
@@ -63,8 +71,22 @@ export default {
       v => !!v || "Room is required",
       v => (v && v.length >= 3) || "Room must be more than 3 characters"
     ],
+    snackbar: false,
+    timeout: 6000,
+    color: "secondary",
+    popupMessageText: "",
     lazy: false
   }),
+
+  mounted() {
+    const { message } = this.$route.query;
+    if (message === "noUser") {
+      this.popupMessageText = "Enter user data";
+    } else if (message === "leftChat") {
+      this.popupMessageText = "You've left a chat room";
+    }
+    this.snackbar = !!this.popupMessageText; // Casting to boolean
+  },
 
   methods: {
     newMessage() {
@@ -72,7 +94,7 @@ export default {
         text: "From client"
       });
     },
-    
+
     ...mapMutations(["setUser"]),
 
     submit() {
@@ -98,9 +120,7 @@ export default {
 </script>
 
 <style>
-
-html{
-  overflow-y: auto ;
+html {
+  overflow-y: auto;
 }
-
 </style>

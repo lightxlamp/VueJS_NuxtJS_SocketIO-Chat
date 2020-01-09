@@ -4,16 +4,14 @@
 <template>
   <div class="chat-wrap">
     <!-- <h1>Chat page of "{{ user.name }}" user. User's id - {{ user.id}} </h1> -->
-    <div class="chat">
-      <ul>
-        <message
-          v-for="m in messages"
-          :key="m.text"
-          :name="m.name"
-          :text="m.text"
-          :owner="m.id === user.id"
-        />
-      </ul>
+    <div class="chat" ref="block">
+      <message
+        v-for="m in messages"
+        :key="m.text"
+        :name="m.name"
+        :text="m.text"
+        :owner="m.id === user.id"
+      />
       <!-- <h1>Chat page of "{{ user.name }}" user</h1> -->
       <!-- <v-btn @click="printMapState" color="success"
       >Print mapState to console</v-btn
@@ -31,6 +29,13 @@ import message from "@/components/message";
 import messageField from "@/components/messageField";
 export default {
   computed: mapState(["user", "messages"]),
+  watch: {
+    messages() {
+      setTimeout(() => {
+        this.$refs.block.scrollTop = this.$refs.block.scrollHeight;
+      }, 0)
+    }
+  },
   middleware: ["chat"],
   components: { message, messageField},
   head() {
