@@ -28,6 +28,7 @@ import { mapState } from "vuex";
 import message from "@/components/message";
 import messageField from "@/components/messageField";
 export default {
+  layout: 'defaultRenamedByStas',
   computed: mapState(["user", "messages"]),
   watch: {
     messages() {

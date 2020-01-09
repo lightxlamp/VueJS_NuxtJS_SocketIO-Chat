@@ -1,4 +1,4 @@
-const consola = require("consola");
+const consola = require("consola"); // Elegant Console Logger for Node.js and Browser
 const { Nuxt, Builder } = require("nuxt");
 const { app, server } = require("./app");
 

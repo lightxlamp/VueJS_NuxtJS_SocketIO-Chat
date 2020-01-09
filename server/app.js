@@ -1,4 +1,7 @@
-const app = require("express")();
+var express = require("express");
+var app = express();
+// app.set('port', process.env.PORT || 1789); // overridden by a similar statement in bin/www
+// process.env.PORT=1789;
 const server = require("http").createServer(app); // node native
 const io = require("socket.io")(server); // Sockets configurated. Now we can use them
 const users = require("./users")();
@@ -10,6 +13,7 @@ function message(name, text, id) {
 
 io.on("connection", socket => {
   console.log("IO connected");
+  console.log('Server:' + JSON.stringify(server, null, 4));
 
   socket.on("userConnecting", (data, callback) => {
     if (!data.name || !data.room) {
