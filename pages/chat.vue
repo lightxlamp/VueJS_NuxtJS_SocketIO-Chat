@@ -1,6 +1,9 @@
 // we don't need to create a route config in NUXT // route creates
 // automatically, when a new file adds (to pages folder probably)
 
+// From docs: The pages directory contains your Application Views and Routes.
+// The framework reads all the .vue files inside this directory and creates the application router.
+
 <template>
   <div class="chat-wrap">
     <!-- <h1>Chat page of "{{ user.name }}" user. User's id - {{ user.id}} </h1> -->
