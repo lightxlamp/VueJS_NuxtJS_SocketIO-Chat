@@ -55,7 +55,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 html{
   overflow-y: auto !important;
 }
@@ -72,7 +72,7 @@ html{
   left: 0;
   right: 0;
   padding: 1rem;
-  height: 100px;
+  height: 115px;
   background: #212121;
 }
 
@@ -84,5 +84,19 @@ html{
   bottom: 80px;
   padding: 1rem;
   overflow-y: auto;
+}
+
+#isTypingDiv{
+  height: 20px;
+  font-size: 13px;
+  border: 1px solid #303030;
+}
+
+#isTypingDiv p {
+  color: white;
+}
+
+.textIsWhite {
+  color: white;
 }
 </style>
