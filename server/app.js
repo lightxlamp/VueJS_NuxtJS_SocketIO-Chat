@@ -83,9 +83,10 @@ io.on("connection", socket => {
     socket.broadcast
       .to(user.room)
       .emit(
-        "newMessage",
-        message("admin", `User ${user.name} is typing`)
+        "isTyping",
+        user
       );
+      callback();
   });
 
   // if user presses "exit room" button

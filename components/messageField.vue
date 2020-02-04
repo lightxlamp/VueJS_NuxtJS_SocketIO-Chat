@@ -49,17 +49,17 @@ export default {
       );
     },
     isKeyDown() {
-      console.log("User is typing");
-      this.currentlyTyping = `${this.$store.state.user.id} is typing...`;
-      this.isTyping = true;
-      if (this.timerId) {
-        clearTimeout(this.timerId); // It works! Wow! I am genius! XD
-      }
+      // console.log("User is typing");
+      // this.currentlyTyping = `${this.$store.state.user.id} is typing...`;
+      // this.isTyping = true;
+      // if (this.timerId) {
+      //   clearTimeout(this.timerId); // It works! Wow! I am genius! XD
+      // }
 
-      this.timerId = setTimeout(() => {
-        this.currentlyTyping = "";
-        this.isTyping = false;
-      }, 3000);
+      // this.timerId = setTimeout(() => {
+      //   this.currentlyTyping = "";
+      //   this.isTyping = false;
+      // }, 3000);
 
       const user = {
         id: this.$store.state.user.id
