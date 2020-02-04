@@ -1,8 +1,8 @@
 <template>
   <div>
-   <div id="isTypingDiv">
-      <p v-bind:class="{ textIsWhite: isTyping}">{{currentlyTyping}}</p>
-   </div>
+    <div id="isTypingDiv">
+      <p v-bind:class="{ textIsWhite: isTyping }">{{ currentlyTyping }}</p>
+    </div>
     <v-row>
       <v-col cols="12">
         <v-text-field
@@ -23,7 +23,7 @@ export default {
     messageText: "",
     currentlyTyping: "",
     isTyping: false,
-    timerId: ''
+    timerId: ""
   }),
   methods: {
     send() {
@@ -52,14 +52,24 @@ export default {
       console.log("User is typing");
       this.currentlyTyping = `${this.$store.state.user.id} is typing...`;
       this.isTyping = true;
-      if(this.timerId){
+      if (this.timerId) {
         clearTimeout(this.timerId); // It works! Wow! I am genius! XD
       }
 
       this.timerId = setTimeout(() => {
         this.currentlyTyping = "";
         this.isTyping = false;
-      }, 3000)
+      }, 3000);
+
+      const user = {
+        id: this.$store.state.user.id
+      };
+
+      this.$socket.emit("userIsTyping", user, data => {
+        if (typeof data === "string") {
+          console.error(data);
+        }
+      });
     }
   }
 };

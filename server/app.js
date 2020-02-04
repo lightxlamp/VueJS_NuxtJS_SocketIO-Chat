@@ -23,7 +23,7 @@ io.on("connection", socket => {
     // You can call join to subscribe the socket to a given channel:
     socket.join(data.room); // https://socket.io/docs/rooms-and-namespaces/#Joining-and-leaving
 
-    users.remove(socket.id); // if this user was already logged in before 
+    users.remove(socket.id); // if this user was already logged in before
 
     users.add({
       id: socket.id,
@@ -38,7 +38,7 @@ io.on("connection", socket => {
     console.log('All users: ' + usersObj); // Logs output to dev tools console.
 
     callback({ userID: socket.id });
-    
+
     io.to(data.room).emit(
       "updateListOfUsersInRoom",
       users.getAllUsersInRoom(data.room)
@@ -75,6 +75,17 @@ io.on("connection", socket => {
       );
     }
     callback();
+  });
+
+  socket.on("userIsTyping", (data, callback) => {
+    const user = users.get(data.id);
+    console.log('This user is typing', user);
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "newMessage",
+        message("admin", `User ${user.name} is typing`)
+      );
   });
 
   // if user presses "exit room" button
