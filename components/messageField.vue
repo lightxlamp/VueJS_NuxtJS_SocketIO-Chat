@@ -83,9 +83,15 @@ export default {
         this.timeout = setTimeout(this.typingTimeoutFunction, 3000);
       }
     },
+
     typingTimeoutFunction(){
+      const userID = this.$store.state.user.id;
       this.typing = false;
-      this.$socket.emit("noLongerTyping");
+      this.$socket.emit("noLongerTyping", userID, data => {
+        if (typeof data === "string") {
+          console.error(data);
+          }
+        });
     }
   }
 };

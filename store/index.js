@@ -22,8 +22,9 @@ export const mutations = {
   },
   SOCKET_isTyping(state, user) {
     state.typingUsers.push(user);
-    console.log('SOCKET_isTyping', user);
+    console.log('SOCKET_isTypingUser', user);
   },
+
   SOCKET_stoppedTyping(state, user) {
     let arr = state.typingUsers;
     for( let i = 0; i < arr.length; i++){
@@ -31,7 +32,8 @@ export const mutations = {
         arr.splice(i, 1);
       }
     }
-    console.log('SOCKET_isTyping', user);
+    state.typingUsers = arr;
+    console.log('SOCKET_StoppedTypingUser', user);
   }
 };
 

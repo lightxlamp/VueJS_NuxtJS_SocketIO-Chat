@@ -96,11 +96,11 @@ io.on("connection", socket => {
     const user = users.get(userID);
     users.unsetAsTyping(userID);
     if(user){
-      console.log('User is stopped typing"', user);
+      //console.log('User is stopped typing', user);
       socket.broadcast
         .to(user.room)
         .emit(
-          "isTyping",
+          "stoppedTyping",
           user
         );
         callback();
