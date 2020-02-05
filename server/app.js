@@ -13,7 +13,7 @@ function message(name, text, id) {
 
 io.on("connection", socket => {
   console.log("IO connected");
-  console.log('Server:' + JSON.stringify(server, null, 4));
+  //console.log('Server:' + JSON.stringify(server, null, 4));
 
   socket.on("userConnecting", (data, callback) => {
     if (!data.name || !data.room) {
@@ -39,6 +39,7 @@ io.on("connection", socket => {
 
     callback({ userID: socket.id });
 
+    // sending to individual socketid (private message)
     io.to(data.room).emit(
       "updateListOfUsersInRoom",
       users.getAllUsersInRoom(data.room)
@@ -77,8 +78,10 @@ io.on("connection", socket => {
     callback();
   });
 
-  socket.on("userIsTyping", (data, callback) => {
-    const user = users.get(data.id);
+  socket.on("userIsTyping", (userID, callback) => {
+    const user = users.get(userID);
+    // users.getAllUsersInRoom(user.room);
+    users.setAsTyping(userID);
     console.log('This user is typing', user);
     socket.broadcast
       .to(user.room)
@@ -87,6 +90,21 @@ io.on("connection", socket => {
         user
       );
       callback();
+  });
+
+  socket.on("noLongerTyping", (userID, callback) => {
+    const user = users.get(userID);
+    users.unsetAsTyping(userID);
+    if(user){
+      console.log('User is stopped typing"', user);
+      socket.broadcast
+        .to(user.room)
+        .emit(
+          "isTyping",
+          user
+        );
+        callback();
+    }
   });
 
   // if user presses "exit room" button
@@ -127,11 +145,11 @@ io.on("connection", socket => {
   socket.emit("newMessageStore", { text: "Test message from server" });
 
   //Export module testing
-  console.log("Fav Author: " + stasTestModule.favoriteAuthor.name);
-  console.log("Fav Book: " + stasTestModule.favoriteBook().title);
-  console.log(
-    "Get Reccomendations: " + stasTestModule.getBookRecommendations()[2].title
-  );
+  // console.log("Fav Author: " + stasTestModule.favoriteAuthor.name);
+  // console.log("Fav Book: " + stasTestModule.favoriteBook().title);
+  // console.log(
+  //   "Get Reccomendations: " + stasTestModule.getBookRecommendations()[2].title
+  // );
 });
 
 module.exports = {

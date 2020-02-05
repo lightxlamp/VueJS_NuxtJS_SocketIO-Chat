@@ -23,6 +23,15 @@ export const mutations = {
   SOCKET_isTyping(state, user) {
     state.typingUsers.push(user);
     console.log('SOCKET_isTyping', user);
+  },
+  SOCKET_stoppedTyping(state, user) {
+    let arr = state.typingUsers;
+    for( let i = 0; i < arr.length; i++){
+      if ( arr[i] === user) {
+        arr.splice(i, 1);
+      }
+    }
+    console.log('SOCKET_isTyping', user);
   }
 };
 

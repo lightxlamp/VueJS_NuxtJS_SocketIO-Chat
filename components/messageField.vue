@@ -23,7 +23,9 @@ export default {
     messageText: "",
     currentlyTyping: "",
     isTyping: false,
-    timerId: ""
+    timerId: "",
+    typing: false,
+    timeout: undefined
   }),
   methods: {
     send() {
@@ -61,15 +63,29 @@ export default {
       //   this.isTyping = false;
       // }, 3000);
 
-      const user = {
-        id: this.$store.state.user.id
-      };
+      // const userID = {
+      //   id: this.$store.state.user.id
+      // };
 
-      this.$socket.emit("userIsTyping", user, data => {
+      const userID = this.$store.state.user.id;
+
+      if(this.typing == false) {
+        this.typing = true;
+        this.timeout = setTimeout(this.typingTimeoutFunction, 3000);
+        this.$socket.emit("userIsTyping", userID, data => {
         if (typeof data === "string") {
           console.error(data);
-        }
-      });
+          }
+        });
+      }
+      else {
+        clearTimeout(this.timeout);
+        this.timeout = setTimeout(this.typingTimeoutFunction, 3000);
+      }
+    },
+    typingTimeoutFunction(){
+      this.typing = false;
+      this.$socket.emit("noLongerTyping");
     }
   }
 };

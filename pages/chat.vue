@@ -20,6 +20,9 @@
       >Print mapState to console</v-btn
     > -->
     </div>
+    <div class="ISTYPINGTEST">
+      {{typingUsers}}
+    </div>
     <div class="chat-form">
       <messageField />
     </div>
@@ -32,7 +35,7 @@ import message from "@/components/message";
 import messageField from "@/components/messageField";
 export default {
   layout: 'defaultRenamedByStas',
-  computed: mapState(["user", "messages"]),
+  computed: mapState(["user", "messages", "typingUsers"]),
   watch: {
     messages() {
       setTimeout(() => {
