@@ -33,9 +33,9 @@ io.on("connection", socket => {
 
     // Test print
     str = JSON.stringify(users);
-    console.log('All users: ' + str); // Logs output to dev tools console.
+    //console.log('All users: ' + str); // Logs output to dev tools console.
     usersObj = JSON.stringify(users, null, 4); // (Optional) beautiful indented output.
-    console.log('All users: ' + usersObj); // Logs output to dev tools console.
+    //console.log('All users: ' + usersObj); // Logs output to dev tools console.
 
     callback({ userID: socket.id });
 
@@ -95,8 +95,8 @@ io.on("connection", socket => {
   socket.on("noLongerTyping", (userID, callback) => {
     const user = users.get(userID);
     users.unsetAsTyping(userID);
+    console.log('User is stopped typing', user);
     if(user){
-      //console.log('User is stopped typing', user);
       socket.broadcast
         .to(user.room)
         .emit(

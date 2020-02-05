@@ -27,11 +27,13 @@ export const mutations = {
 
   SOCKET_stoppedTyping(state, user) {
     let arr = state.typingUsers;
+    console.log('state.typingUsers', state.typingUsers);
     for( let i = 0; i < arr.length; i++){
-      if ( arr[i] === user) {
+      if ( arr[i].id === user.id) {
         arr.splice(i, 1);
       }
     }
+    console.log('arr', arr);
     state.typingUsers = arr;
     console.log('SOCKET_StoppedTypingUser', user);
   }
