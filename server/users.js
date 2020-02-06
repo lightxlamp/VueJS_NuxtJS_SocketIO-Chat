@@ -21,24 +21,24 @@ class Users {
         return user
     }
 
-    setAsTyping(userID){
-      //https://stackoverflow.com/questions/4689856/how-to-change-value-of-object-which-is-inside-an-array-using-javascript-or-jquer/50504081
-      let objIndex = this.users.findIndex((obj => obj.id == userID));
-      let userToModify = this.users[objIndex];
-      if(userToModify){
-        userToModify.isTyping = true;
-      }
-      //console.log('this.users', this.users);
-    }
+    // setAsTyping(userID){
+    //   //https://stackoverflow.com/questions/4689856/how-to-change-value-of-object-which-is-inside-an-array-using-javascript-or-jquer/50504081
+    //   let objIndex = this.users.findIndex((obj => obj.id == userID));
+    //   let userToModify = this.users[objIndex];
+    //   if(userToModify){
+    //     userToModify.isTyping = true;
+    //   }
+    //   //console.log('this.users', this.users);
+    // }
 
-    unsetAsTyping(userID){
-      let objIndex = this.users.findIndex((obj => obj.id == userID));
-      let userToModify = this.users[objIndex];
-      if(userToModify){
-        userToModify.isTyping = false;
-      }
-      //console.log('this.users', this.users);
-    }
+    // unsetAsTyping(userID){
+    //   let objIndex = this.users.findIndex((obj => obj.id == userID));
+    //   let userToModify = this.users[objIndex];
+    //   if(userToModify){
+    //     userToModify.isTyping = false;
+    //   }
+    //   //console.log('this.users', this.users);
+    // }
 
     getAllUsersInRoom(room){
         const usersInRoom = this.users.filter(user => user.room === room);
@@ -46,12 +46,12 @@ class Users {
         return usersInRoom;
     }
 
-    getAllTypingUsersInRoom(room){
-      const usersInRoom = this.getAllUsersInRoom(room);
-      const typingUsersInRoom = usersInRoom.filter(user => user.isTyping === true);
-      //console.log('getAllTypingUsersInRoom:', JSON.stringify(typingUsersInRoom, null, 4));
-      return typingUsersInRoom;
-    }
+    // getAllTypingUsersInRoom(room){
+    //   const usersInRoom = this.getAllUsersInRoom(room);
+    //   const typingUsersInRoom = usersInRoom.filter(user => user.isTyping === true);
+    //   //console.log('getAllTypingUsersInRoom:', JSON.stringify(typingUsersInRoom, null, 4));
+    //   return typingUsersInRoom;
+    // }
 }
 
 module.exports = function() {

@@ -81,7 +81,7 @@ io.on("connection", socket => {
   socket.on("userIsTyping", (userID, callback) => {
     const user = users.get(userID);
     // users.getAllUsersInRoom(user.room);
-    users.setAsTyping(userID);
+    //users.setAsTyping(userID);
     console.log('This user is typing', user);
     socket.broadcast
       .to(user.room)
@@ -94,7 +94,7 @@ io.on("connection", socket => {
 
   socket.on("noLongerTyping", (userID, callback) => {
     const user = users.get(userID);
-    users.unsetAsTyping(userID);
+    //users.unsetAsTyping(userID);
     console.log('User is stopped typing', user);
     if(user){
       socket.broadcast
