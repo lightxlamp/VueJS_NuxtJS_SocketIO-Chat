@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="isTypingDiv">
+    <!-- <div id="isTypingDiv">
       <p v-bind:class="{ textIsWhite: isTyping }">{{ currentlyTyping }}</p>
-    </div>
+    </div> -->
     <v-row>
       <v-col cols="12">
         <v-text-field

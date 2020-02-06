@@ -1,8 +1,8 @@
-// we don't need to create a route config in NUXT // route creates
-// automatically, when a new file adds (to pages folder probably)
-
-// From docs: The pages directory contains your Application Views and Routes.
-// The framework reads all the .vue files inside this directory and creates the application router.
+// we don't need to create a route config in NUXT // route creates //
+automatically, when a new file adds (to pages folder probably) // From docs: The
+pages directory contains your Application Views and Routes. // The framework
+reads all the .vue files inside this directory and creates the application
+router.
 
 <template>
   <div class="chat-wrap">
@@ -20,10 +20,11 @@
       >Print mapState to console</v-btn
     > -->
     </div>
-    <div class="ISTYPINGTEST">
-      {{typingUsers}}
-    </div>
+
     <div class="chat-form">
+      <div class="isTypingTextDiv">
+        {{ generateTypingUsersString() }}
+      </div>
       <messageField />
     </div>
   </div>
@@ -34,17 +35,17 @@ import { mapState } from "vuex";
 import message from "@/components/message";
 import messageField from "@/components/messageField";
 export default {
-  layout: 'defaultRenamedByStas',
+  layout: "defaultRenamedByStas",
   computed: mapState(["user", "messages", "typingUsers"]),
   watch: {
     messages() {
       setTimeout(() => {
         this.$refs.block.scrollTop = this.$refs.block.scrollHeight;
-      }, 0)
+      }, 0);
     }
   },
   middleware: ["chat"],
-  components: { message, messageField},
+  components: { message, messageField },
   head() {
     return {
       title: `Welcome to ${this.user.room} room` // TODO learn more about mapState
@@ -53,13 +54,33 @@ export default {
   methods: {
     printMapState() {
       console.log(mapState(["user"]));
+    },
+    generateTypingUsersString() {
+      let typingUsersString = "";
+      for (let i = 0; i < this.typingUsers.length; i++) {
+        if (i == 0) {
+          // we do not need comma and space when we adding the first name
+          typingUsersString += this.typingUsers[i].name;
+        } else {
+          typingUsersString += ", " + this.typingUsers[i].name;
+        }
+      }
+      if (this.typingUsers.length == 0) {
+        typingUsersString = "";
+      } else if (this.typingUsers.length == 1) {
+        typingUsersString += " is typing...";
+      } else if (this.typingUsers.length > 1) {
+        typingUsersString += " are typing...";
+      }
+
+      return typingUsersString;
     }
   }
 };
 </script>
 
 <style>
-html{
+html {
   overflow-y: auto !important;
 }
 
@@ -89,10 +110,17 @@ html{
   overflow-y: auto;
 }
 
-#isTypingDiv{
+#isTypingDiv {
   height: 20px;
   font-size: 13px;
-  border: 1px solid #303030;
+  border: 1px solid #212121;
+}
+
+.isTypingTextDiv {
+  height: 20px;
+  font-size: 13px;
+  border: 1px solid #212121;
+  color: white;
 }
 
 #isTypingDiv p {
