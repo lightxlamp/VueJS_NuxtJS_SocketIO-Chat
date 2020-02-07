@@ -2,12 +2,12 @@
   <v-app app>
     <v-navigation-drawer app v-model="drawer" mobile-break-point="650px">
       <v-list-item-title subheader>
-        <v-subheader>Users in room:</v-subheader> 
+        <v-subheader>Users in room:</v-subheader>
         <!-- <v-list-item v-for="user in users" :key="user.id">  -->
-        <v-list-item v-for="u in usersInRoom" :key="u.id"> 
+        <v-list-item v-for="u in usersInRoom" :key="u.id">
           <v-list-item-icon>
             <!-- id of iterated user = id of a logged in user -->
-            <v-icon v-if="u.id === user.id" color="yellow">mdi-account</v-icon> 
+            <v-icon v-if="u.id === user.id" color="yellow">mdi-account</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -39,12 +39,12 @@ export default {
   computed: mapState(["user", "usersInRoom"]),
   data: () => ({
     drawer: true,
-    users: [
-      { id: 1, name: "User 1" },
-      { id: 2, name: "User 2" },
-      { id: 3, name: stasTestModule.favoriteAuthor.name } //it was interesing for me.
-      //Can I use exported modules in layouts as well? :p
-    ]
+    // users: [
+    //   { id: 1, name: "User 1" },
+    //   { id: 2, name: "User 2" },
+    //   { id: 3, name: stasTestModule.favoriteAuthor.name } //it was interesting for me.
+    //   //Can I use exported modules in layouts as well? :p
+    // ]
   }),
   methods: {
     ...mapMutations(["clearData"]),

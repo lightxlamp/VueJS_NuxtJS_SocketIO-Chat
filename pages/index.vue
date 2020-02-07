@@ -1,7 +1,7 @@
 <template>
-  <v-layout column justify-center align-center>
+  <v-layout column justify-center align-center row wrap>
     <v-flex xs12 sm8>
-      <v-card min-width="500px">
+      <v-card min-width="300px" width="500px">
         <v-snackbar v-model="snackbar" :color="color" :timeout="timeout" top>
           {{ popupMessageText }}
           <v-btn dark text @click="snackbar = false">
@@ -39,7 +39,7 @@
         </v-card-text>
       </v-card>
 
-      <!-- <v-btn @click="newMessage"> 
+      <!-- <v-btn @click="newMessage">
         New message by Stas
       </v-btn>  -->
     </v-flex>
