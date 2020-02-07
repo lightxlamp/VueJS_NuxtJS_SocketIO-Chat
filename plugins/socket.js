@@ -6,7 +6,7 @@ export default function({ store }) {
     new VueSocketIO({
       debug: false,
       //connection: 'http://localhost:3000', // https://www.youtube.com/watch?v=VFFr9PYgRGY
-      connection: '/', // https://www.youtube.com/watch?v=VFFr9PYgRGY
+      connection: '/', // Uderstood issues on heroku with a help of video mentioned above. 9:58
       vuex: {
         store,
         actionPrefix: 'SOCKET_',

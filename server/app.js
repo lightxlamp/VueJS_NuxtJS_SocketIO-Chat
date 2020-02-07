@@ -82,7 +82,7 @@ io.on("connection", socket => {
     const user = users.get(userID);
     // users.getAllUsersInRoom(user.room);
     //users.setAsTyping(userID);
-    console.log('This user is typing', user);
+    //console.log('This user is typing', user);
     socket.broadcast
       .to(user.room)
       .emit(
@@ -95,7 +95,7 @@ io.on("connection", socket => {
   socket.on("noLongerTyping", (userID, callback) => {
     const user = users.get(userID);
     //users.unsetAsTyping(userID);
-    console.log('User is stopped typing', user);
+    //console.log('User is stopped typing', user);
     if(user){
       socket.broadcast
         .to(user.room)
@@ -109,6 +109,7 @@ io.on("connection", socket => {
 
   // if user presses "exit room" button
   socket.on("userLeft", (id, callback) => {
+    console.log('User pressed back button or refreshed the page');
     const user = users.remove(id);
     if (user) {
       io.to(user.room).emit(

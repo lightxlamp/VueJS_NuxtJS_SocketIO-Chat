@@ -49,6 +49,7 @@ export default {
   methods: {
     ...mapMutations(["clearData"]),
     exit() {
+      console.log('User pressed Back button');
       this.$socket.emit("userLeft", this.user.id, () => {
         this.$router.push("/?action=leftChat");
         this.clearData();
