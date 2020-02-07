@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center row wrap>
     <v-flex xs12 sm8>
-      <v-card min-width="300px" width="500px">
+      <v-card class="loginWindow" min-width="300px" width="500px" color="primary">
         <v-snackbar v-model="snackbar" :color="color" :timeout="timeout" top>
           {{ popupMessageText }}
           <v-btn dark text @click="snackbar = false">
@@ -18,6 +18,7 @@
               :rules="nameRules"
               label="Name"
               required
+              color="yellow"
             ></v-text-field>
 
             <v-text-field
@@ -122,5 +123,15 @@ export default {
 <style>
 html {
   overflow-y: auto;
+}
+/* https://stackoverflow.com/questions/55818172/how-to-change-error-color-of-vuetify-component */
+/* .loginWindow .v-application .error--text{
+  color: white !important;
+} */
+
+.loginWindow.error--text,
+.loginWindow .error--text {
+  color: rgb(0, 0, 0) !important;
+  caret-color: rgb(2, 0, 0) !important;
 }
 </style>

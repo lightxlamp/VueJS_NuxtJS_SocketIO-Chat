@@ -109,7 +109,7 @@ io.on("connection", socket => {
 
   // if user presses "exit room" button
   socket.on("userLeft", (id, callback) => {
-    console.log('User pressed back button or refreshed the page');
+    //console.log('User pressed back button or refreshed the page');
     const user = users.remove(id);
     if (user) {
       io.to(user.room).emit(
