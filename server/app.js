@@ -5,7 +5,7 @@ var app = express();
 const server = require("http").createServer(app); // node native
 const io = require("socket.io")(server); // Sockets configurated. Now we can use them
 const users = require("./users")();
-const stasTestModule = require("./stasTestingExportModule");
+// const stasTestModule = require("./stasTestingExportModule");
 
 function message(name, text, id) {
   return { name, text, id };
