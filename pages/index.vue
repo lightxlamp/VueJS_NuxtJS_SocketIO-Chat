@@ -1,7 +1,7 @@
 <template>
   <v-layout column justify-center align-center row wrap>
     <v-flex xs12 sm8>
-      <v-card class="loginWindow" min-width="300px" width="500px" color="primary">
+      <v-card class="loginWindow" min-width="300px" width="500px" color="accent">
         <v-snackbar v-model="snackbar" :color="color" :timeout="timeout" top>
           {{ popupMessageText }}
           <v-btn dark text @click="snackbar = false">
@@ -18,7 +18,7 @@
               :rules="nameRules"
               label="Name"
               required
-              color="yellow"
+              color="#00e676"
             ></v-text-field>
 
             <v-text-field
@@ -26,12 +26,13 @@
               :rules="roomRules"
               label="Enter room"
               required
+              color="#00e676"
             ></v-text-field>
 
             <v-btn
               :disabled="!valid"
               color="success"
-              class="mr-4"
+              class="mt-3"
               @click="submit"
             >
               Enter
